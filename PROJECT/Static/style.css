@@ -1,0 +1,203 @@
+/* ================= GLOBAL ================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7fa;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #c40000;
+    padding: 15px 40px;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #ffd6d6;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+    width: 85%;
+    margin: 40px auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* ================= CARDS ================= */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ================= TABLE ================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #c0392b;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #ffe6e6;
+    transition: 0.3s;
+}
+
+/* ================= BUTTONS ================= */
+.add-btn {
+    background-color: #27ae60;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.edit-btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.edit-btn:hover,
+.delete-btn:hover,
+.add-btn:hover {
+    opacity: 0.8;
+}
+
+/* ================= STATUS BADGES ================= */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: white;
+}
+
+.pending { background: orange; }
+.approved { background: green; }
+.rejected { background: red; }
+
+/* Inventory Status */
+.status-low {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.inventory-summary{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+}
+
+.warning{
+background:#ffe6e6;
+padding:20px;
+margin:20px;
+border-radius:10px;
+color:#900;
+}
+
+.status-medium {
+    background-color: #f39c12;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.status-good {
+    background-color: #27ae60;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* ================= BLOOD BADGE ================= */
+.blood-badge {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* ================= SEARCH ================= */
+.search-bar {
+    padding: 10px;
+    width: 300px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.info-section{
+background:#fff;
+padding:20px;
+margin:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.analytics-box{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}

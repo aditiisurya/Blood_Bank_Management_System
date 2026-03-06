@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Blood Bank Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Modern Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f4f6f9;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(90deg, #c40000, #ff3c3c);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 60px 40px;
+            flex-wrap: wrap;
+        }
+
+        /* CARD DESIGN */
+        .card {
+            background: white;
+            width: 260px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        /* Hover effect */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 40px;
+            margin: 10px 0;
+            color: #c40000;
+        }
+
+        .card p {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin: 30px;
+            text-decoration: none;
+            background: #c40000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #ff0000;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🩸 Smart Blood Bank Dashboard</h1>
+    <p>Real-Time Blood Management Overview</p>
+</div>
+
+<div class="dashboard-container">
+
+    <!-- TOTAL DONORS -->
+    <div class="card" onclick="location.href='/donors'">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="60">
+        <h2 id="donorCount">{{ donors }}</h2>
+        <p>Total Donors</p>
+    </div>
+
+    <!-- TOTAL REQUESTS -->
+    <div class="card" onclick="location.href='/requests'">
+        <img src="https://cdn-icons-png.flaticon.com/512/2966/2966484.png" width="60">
+        <h2 id="requestCount">{{ requests }}</h2>
+        <p>Total Requests</p>
+    </div>
+
+    <!-- TOTAL UNITS -->
+    <div class="card" onclick="location.href='/inventory'">
+        <img src="https://cdn-icons-png.flaticon.com/512/3176/3176360.png" width="60">
+        <h2 id="unitCount">{{ total_units }}</h2>
+        <p>Units Available</p>
+    </div>
+
+</div>
+<a href="/analytics" style="
+    background-color:#d10000;
+    color:white;
+    padding:12px 25px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-left:10px;
+">
+    View Analytics
+</a>
+
+<a href="/" class="back-btn">Back to Home</a>
+
+<!-- ADDED: Animated counter script -->
+<script>
+    function animateValue(id, start, end, duration) {
+        let obj = document.getElementById(id);
+        let range = end - start;
+        let current = start;
+        let increment = end > start ? 1 : -1;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        let timer = setInterval(function() {
+            current += increment;
+            obj.textContent = current;
+            if (current == end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+
+    // Animate counts on page load
+    window.onload = function() {
+        animateValue("donorCount", 0, {{ donors }}, 1000);
+        animateValue("requestCount", 0, {{ requests }}, 1000);
+        animateValue("unitCount", 0, {{ total_units }}, 1000);
+    }
+</script>
+
+</body>
+</html>

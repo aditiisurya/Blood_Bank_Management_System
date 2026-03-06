@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory - Smart Blood Bank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🩸 Smart Blood Bank</div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/donors">Donors</a>
+        <a href="/inventory" class="active">Inventory</a>
+        <a href="/hospitals">Hospitals</a>
+        <a href="/requests">Requests</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="page-header">
+        <h2>🩸 Blood Inventory</h2>
+        <a href="/add_inventory" class="add-btn">+ Update Stock</a>
+    </div>
+
+    <!-- INVENTORY SUMMARY -->
+
+<div class="analytics-box">
+
+<h3>Inventory Analytics</h3>
+
+<p><b>Total Blood Units Available:</b> {{ total_units }}</p>
+
+<p><b>Highest Stock Blood Group:</b> {{ highest_stock }}</p>
+
+<p><b>Lowest Stock Blood Group:</b> {{ lowest_stock }}</p>
+
+
+</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Blood Group</th>
+                <th>Units Available</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for item in inventory %}
+            <tr>
+                <td>
+                    <span class="blood-badge">
+                        {{ item.blood_group }}
+                    </span>
+                </td>
+
+                <td>{{ item.units_available }}</td>
+
+                <td>
+                    {% if item.units_available < 5 %}
+                        <span class="status-low">⚠ Low Stock</span>
+                    {% elif item.units_available < 10 %}
+                        <span class="status-medium">⚡ Moderate</span>
+                    {% else %}
+                        <span class="status-good">✔ Sufficient</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

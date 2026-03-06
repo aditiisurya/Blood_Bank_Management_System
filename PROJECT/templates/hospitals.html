@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospitals - Smart Blood Bank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🩸 Smart Blood Bank</div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/donors">Donors</a>
+        <a href="/inventory">Inventory</a>
+        <a href="/hospitals" class="active">Hospitals</a>
+        <a href="/requests">Requests</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="page-header">
+        <h2>🏥 Hospitals List</h2>
+        <a href="/add_hospital" class="add-btn">+ Add Hospital</a>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <input type="text" id="searchHospital" placeholder="Search hospital..." class="search-bar">
+
+    <table id="hospitalTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hospital Name</th>
+                <th>Location</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for hospital in hospitals %}
+            <tr>
+                <td>{{ hospital.hospital_id }}</td>
+                <td>{{ hospital.hospital_name }}</td>
+                <td>{{ hospital.city }}</td>
+                <td>{{ hospital.contact }}</td>
+                <td>
+                    <a href="/edit_hospital/{{ hospital.hospital_id }}" class="edit-btn">Edit</a>
+                    <a href="/delete_hospital/{{ hospital.hospital_id }}" 
+                       class="delete-btn"
+                       onclick="return confirm('Are you sure you want to delete this hospital?')">
+                       Delete
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<!-- SEARCH SCRIPT -->
+<script>
+document.getElementById("searchHospital").addEventListener("keyup", function() {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#hospitalTable tbody tr");
+
+    rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
+    });
+});
+</script>
+
+</body>
+</html>

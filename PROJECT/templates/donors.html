@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donors - Smart Blood Bank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🩸 Smart Blood Bank</div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/donors" class="active">Donors</a>
+        <a href="/inventory">Inventory</a>
+        <a href="/hospitals">Hospitals</a>
+        <a href="/requests">Requests</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="page-header">
+        <h2>👥 Donors List</h2>
+        <a href="/add_donor" class="add-btn">+ Add Donor</a>
+    </div>
+
+    <!-- DONOR INSIGHTS -->
+
+<div class="analytics-box">
+
+<h3>Donor Analytics</h3>
+
+<p><b>Total Registered Donors:</b> {{ total_donors }}</p>
+
+<p><b>Most Common Blood Group:</b> {{ common_blood }}</p>
+
+</div>
+
+    <!-- SEARCH BAR -->
+    <input type="text" id="searchInput" placeholder="Search donor..." class="search-bar">
+
+    <table id="donorTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Blood Group</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for donor in donors %}
+            <tr>
+                <td>{{ donor.donor_id }}</td>
+                <td>{{ donor.donor_name }}</td>
+                <td>
+                    <span class="blood-badge">{{ donor.blood_group }}</span>
+                </td>
+                <td>{{ donor.contact }}</td>
+                <td>
+                    <a href="/edit_donor/{{ donor.donor_id }}" class="edit-btn">Edit</a>
+                    <a href="/delete_donor/{{ donor.donor_id }}" class="delete-btn">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<!-- SIMPLE SEARCH SCRIPT -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#donorTable tbody tr");
+
+    rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
+    });
+});
+</script>
+
+</body>
+</html>

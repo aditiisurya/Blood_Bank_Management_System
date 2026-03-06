@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Inventory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Update Blood Inventory</h4>
+        </div>
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Blood Group</label>
+                    <select name="blood_group" class="form-select" required>
+                        <option value="">Select</option>
+                        <option>A+</option>
+                        <option>B+</option>
+                        <option>O+</option>
+                        <option>AB+</option>
+                        <option>A-</option>
+                        <option>B-</option>
+                        <option>O-</option>
+                        <option>AB-</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Units to Add</label>
+                    <input type="number" name="units" class="form-control" min="1" required>
+                </div>
+
+                <button type="submit" class="btn btn-danger">Update</button>
+                <a href="/inventory" class="btn btn-secondary">Back</a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
